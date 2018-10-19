@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function(){
+window.addEventListener('DOMContentLoaded', () => {
     
     'use strict';
 
@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', function(){
         tabContent[b].classList.add('show');
     }
 
-    tabContainer.addEventListener('click', function(event){
+    tabContainer.addEventListener('click', (event) => {
         let target = event.target;
         if (target && target.classList.contains('info-header-tab')) {
             for (let i = 0; i < tab.length; i++) {
@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
     // Timer
 
-    let deadline = '2018-10-18';
+    let deadline = '2018-10-21';
 
     function getTimeRemaining(endtime) {
         
@@ -46,15 +46,15 @@ window.addEventListener('DOMContentLoaded', function(){
             hours = Math.floor(t/1000/60/60);
 
         if (seconds < 10) {
-            seconds = '0' + seconds;
+            seconds = `0${seconds}`;
         }
         
         if (minutes < 10) {
-            minutes = '0' + minutes;
+            minutes = `0${minutes}`;
         }
 
         if (hours < 10) {
-            hours = '0' + hours;
+            hours = `0${hours}`;
         }
 
         return {
@@ -104,11 +104,11 @@ window.addEventListener('DOMContentLoaded', function(){
         contactsScreen = document.querySelector('#contacts');
 
 
-    infoBtn[0].addEventListener('click', function(){
+    infoBtn[0].addEventListener('click', () => {
         
         let coordY = aboutScreen.offsetTop - 80;
                         
-        let scroller = setInterval(function() {
+        let scroller = setInterval( () => {
             let scrollBy = coordY / 60;
             
               if(scrollBy > window.pageYOffset - coordY && window.innerHeight + window.pageYOffset < document.body.offsetHeight) {
@@ -121,11 +121,11 @@ window.addEventListener('DOMContentLoaded', function(){
             }, 17);
     });
 
-    infoBtn[1].addEventListener('click', function(){
+    infoBtn[1].addEventListener('click', () => {
         
         let coordY = photoScreen.offsetTop - 80;
                         
-        let scroller = setInterval(function() {
+        let scroller = setInterval( () => {
             let scrollBy = coordY / 60;
             
               if(scrollBy > window.pageYOffset - coordY && window.innerHeight + window.pageYOffset < document.body.offsetHeight) {
@@ -140,11 +140,11 @@ window.addEventListener('DOMContentLoaded', function(){
         
         
         
-    infoBtn[2].addEventListener('click', function(){
+    infoBtn[2].addEventListener('click', () => {
         
         let coordY = priceScreen.offsetTop - 80;
                         
-        let scroller = setInterval(function() {
+        let scroller = setInterval( () => {
             let scrollBy = coordY / 60;
             
               if(scrollBy > window.pageYOffset - coordY && window.innerHeight + window.pageYOffset < document.body.offsetHeight) {
@@ -157,11 +157,11 @@ window.addEventListener('DOMContentLoaded', function(){
             }, 17);
     });
 
-    infoBtn[3].addEventListener('click', function(){
+    infoBtn[3].addEventListener('click', () => {
         
         let coordY = contactsScreen.offsetTop - 80;
                         
-        let scroller = setInterval(function() {
+        let scroller = setInterval( () => {
             let scrollBy = coordY / 60;
             
               if(scrollBy > window.pageYOffset - coordY && window.innerHeight + window.pageYOffset < document.body.offsetHeight) {
@@ -188,17 +188,17 @@ window.addEventListener('DOMContentLoaded', function(){
         btnMore.classList.add('more-splash');
     }
 
-    btnMore.addEventListener('click', function(){
+    btnMore.addEventListener('click', () => {
         showMore();
     });
    
-    btnClose.addEventListener('click', function(){
+    btnClose.addEventListener('click', () => {
         overlayWindow.style.display = 'none';
         btnMore.classList.remove('more-splash');
         document.body.style.overflow = '';
     });
 
-    aboutScreen.addEventListener('click', function(event){
+    aboutScreen.addEventListener('click', (event) => {
         if(event.target.classList.contains('description-btn')){
             showMore();
         }
