@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Timer
 
-    let deadline = '2018-10-21';
+    let deadline = '2018-10-26';
 
     function getTimeRemaining(endtime) {
         
@@ -202,7 +202,65 @@ window.addEventListener('DOMContentLoaded', () => {
         if(event.target.classList.contains('description-btn')){
             showMore();
         }
-    })
+    });
 
+
+    // Form
+
+    let message = {
+        loading: "Загрузка...",
+        success: "Спасибо! В ближайшее время мы с вами свяжемся",
+        failure: "Произошла ошибка, попробуйте еще раз",
+        wrongInput: "Неправильный ввод: только цифры и '+'"
+    }
+
+    let form = document.querySelector('.main-form'),
+        formContact = document.querySelector('.contact-form > form'),
+        statusInfo = document.createElement('div');
+
+    statusInfo.classList.add('status');
+
+    function sendData(question){
+        let input = question.querySelectorAll('input'),
+            phone = question.querySelector('#phone');
+        question.appendChild(statusInfo);
+        if (/\D/.test(phone.value) && !/\+/.test(phone.value)) {
+            statusInfo.innerHTML = message.wrongInput;
+            phone.value = '';
+        } else {
+            let request = new XMLHttpRequest();
+            request.open('POST', '../server.php');
+            request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    
+            let formData = new FormData(question);
+            request.send(formData);
+    
+            request.addEventListener('readystatechange', function(){
+                if (request.readyState < 4) {
+                    statusInfo.innerHTML = message.loading;
+                } else if (request.readyState === 4 && request.status == 200) {
+                    statusInfo.innerHTML = message.success;
+                } else {
+                    statusInfo.innerHTML = message.failure; 
+                }
+            });
+    
+            for (let i=0; i < input.length; i++) {
+                input[i].value = '';
+            }
+           
+        }
+
+        
+    }
+
+    form.addEventListener('submit', function(event){
+        event.preventDefault();
+        sendData(form);
+    });
+
+    formContact.addEventListener('submit', function(event){
+        event.preventDefault();
+        sendData(formContact);
+    });
 });
-
