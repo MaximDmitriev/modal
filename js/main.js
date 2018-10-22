@@ -219,10 +219,10 @@ window.addEventListener('DOMContentLoaded', () => {
         statusInfo = document.createElement('div');
 
     statusInfo.classList.add('status');
-
+    
     function sendData(question){
         let input = question.querySelectorAll('input'),
-            phone = question.querySelector('#phone');
+            phone = question.querySelector('input[name=phone]');
         question.appendChild(statusInfo);
         if (/\D/.test(phone.value) && !/\+/.test(phone.value)) {
             statusInfo.innerHTML = message.wrongInput;
