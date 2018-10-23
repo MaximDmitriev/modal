@@ -673,5 +673,10 @@ header ul li:before {
 
 .status{
   color: #fff;
-  margin-top: 5px;
+  margin-top: 10px;
+}
+
+.status p{
+  display: inline;
+  margin-left: 10px;
 }
